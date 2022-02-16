@@ -56,3 +56,10 @@ def ReviewDetailView(request, id):
         return Response(status=status.HTTP_404_NOT_FOUND, data={'message': 'Peview not found'})
     data = serializers.ReviewSerializers(review).data
     return Response(data=data)
+
+
+@api_view(['GET'])
+def MoviesReviesList(request):
+    movie = models.Movie.objects.all()
+    data = serializers.MoviesSerializersList(movie, many=True).data
+    return Response(data=data)
