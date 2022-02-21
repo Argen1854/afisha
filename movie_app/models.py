@@ -23,12 +23,12 @@ class Movie(models.Model):
         return self.title
 
     @property
-    def reviews(self):
+    def reviews_count(self):
         review = Review.objects.filter(movie = self)
         return [{'id': i.id, 'text': i.text, 'stars': i.stars} for i in review]
 
     @property
-    def rating(self):
+    def rating_count(self):
         p = 0
         for i in self.reviews_move.all():
             p += int(i.stars)
